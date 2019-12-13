@@ -6,7 +6,7 @@ import logger from "redux-logger";
 
 import Input from "./inputPropWrapper";
 import TodoListContainer from "./listContainer";
-import rootReducer from "./rootReducer";
+import rootReducer from "./inputReducer";
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 

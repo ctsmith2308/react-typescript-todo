@@ -1,21 +1,17 @@
 import { connect } from "react-redux";
 
-import { handle_todo, add_todo } from "./actionCreators";
-import { IRootState } from "./rootReducer";
-
+import { IInputRootState } from "./inputReducer";
+import { handle_inputted_todo } from "./actionCreators";
 import Input from "./input";
 
-const mapState = ({ userInput }: IRootState) => {
+const mapState = ({ userInput }: IInputRootState) => {
   return {
     userInput: userInput
   };
 };
 
 const mapDispatch = {
-  handle_todo,
-  add_todo
+  handle_inputted_todo
 };
 
-const connector = connect(mapState, mapDispatch);
-
-export default connector(Input);
+export default connect(mapState, mapDispatch)(Input);

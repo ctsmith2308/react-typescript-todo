@@ -1,4 +1,4 @@
-interface HandleInputAction {
+export interface HandleUserInput {
   type: string;
   userInput: string;
 }
@@ -9,21 +9,23 @@ export interface ITodo {
   complete: boolean;
 }
 
-export interface IRootState {
+export interface IInputRootState {
   userInput: string;
   all: ITodo[];
   counter: number;
 }
 
-const initialState: IRootState = {
+const initialState: IInputRootState = {
   userInput: "",
   all: [],
   counter: 0
 };
 
-const inputReducer = (state = initialState, action: HandleInputAction) => {
+type UserInputActionType = HandleUserInput;
+
+const inputReducer = (state = initialState, action: UserInputActionType) => {
   switch (action.type) {
-    case "HANDLE_TODO":
+    case "INPUT_CHANGED":
       return {
         ...state,
         userInput: action.userInput

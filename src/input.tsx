@@ -1,28 +1,27 @@
 import React from "react";
-
-interface IHandleTodo {
-  type: string;
-  userInput: string;
-}
+import { HandleUserInput } from "./inputReducer";
 
 interface IStateProps {
   userInput: string;
 }
 
+interface IInputHandler {
+  (userInput: string, submitTodo?: boolean): HandleUserInput;
+}
+
 interface IDispatchProps {
-  handle_todo: (userInput: string) => IHandleTodo;
-  add_todo: (userInput: string) => IHandleTodo;
+  handle_inputted_todo: IInputHandler;
 }
 
 type InputProps = IStateProps & IDispatchProps;
 
-const Input = ({ userInput, handle_todo, add_todo }: InputProps) => {
+const Input = ({ userInput, handle_inputted_todo }: InputProps) => {
   return (
     <div className="todo-input-container">
       <form
         onSubmit={e => {
           e.preventDefault();
-          add_todo(userInput);
+          handle_inputted_todo(userInput, true);
         }}
       >
         <input
@@ -30,7 +29,7 @@ const Input = ({ userInput, handle_todo, add_todo }: InputProps) => {
           type="text"
           placeholder="What needs to be done?"
           value={userInput}
-          onChange={e => handle_todo(e.target.value)}
+          onChange={e => handle_inputted_todo(e.target.value)}
         />
       </form>
     </div>
