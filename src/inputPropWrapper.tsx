@@ -1,33 +1,19 @@
 import { connect } from "react-redux";
-import React from "react";
 
-// NOTE: Cannot connect a component that is imported???
+import Input from "./input";
 
-interface IStateProps {
-  currentTodo: string;
-}
-
-interface IHandleTodo {
-  type: string;
-  payload: any;
-}
-
-interface IDispatchProps {
-  handle_todo: (input: string) => IHandleTodo;
-  add_todo: (todo: string) => IHandleTodo;
-}
-
-type InputProps = IStateProps & IDispatchProps;
-
+// This is redundant
 interface ITodo {
   id: number;
   item: string;
-  completed: boolean;
+  complete: boolean;
 }
 
+// This is redundant
 interface IRootState {
   currentTodo: string;
-  allTodos: ITodo[];
+  all: ITodo[];
+  // can add show completed and reuse this interface in reducer
 }
 
 const mapState = (state: IRootState) => {
@@ -47,25 +33,6 @@ const mapDispatch = {
   })
 };
 
-const Input = ({ currentTodo, handle_todo, add_todo }: InputProps) => {
-  return (
-    <div className="todo-input-container">
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          add_todo(currentTodo);
-        }}
-      >
-        <input
-          className="todo-input"
-          type="text"
-          placeholder="What needs to be done?"
-          value={currentTodo}
-          onChange={e => handle_todo(e.target.value)}
-        />
-      </form>
-    </div>
-  );
-};
+const connector = connect(mapState, mapDispatch);
 
-export default connect(mapState, mapDispatch)(Input);
+export default connector(Input);

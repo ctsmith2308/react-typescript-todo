@@ -3,15 +3,21 @@ interface IHandleTodo {
   payload: any;
 }
 
-type ActionTypes = IHandleTodo;
+// type ActionTypes = IHandleTodo;
 
-const initialState: any = {
+interface RootState {
+  currentTodo: string;
+  all: [];
+  counter: number;
+}
+
+const initialState: RootState = {
   currentTodo: "",
   all: [],
   counter: 0
 };
 
-const inputReducer = (state = initialState, action: ActionTypes) => {
+const inputReducer = (state = initialState, action: IHandleTodo) => {
   console.log("action", action);
   console.log("state", state);
   switch (action.type) {
@@ -26,7 +32,7 @@ const inputReducer = (state = initialState, action: ActionTypes) => {
         currentTodo: "",
         all: [
           ...state.all,
-          { id: state.counter++, todo: action.payload, completed: false }
+          { id: state.counter++, item: action.payload, complete: false }
         ]
       };
     default:
