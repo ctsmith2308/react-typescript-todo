@@ -1,16 +1,7 @@
-import React from "react";
 import { connect } from "react-redux";
+import React from "react";
 
-interface ITodo {
-  id: number;
-  item: string;
-  completed: boolean;
-}
-
-interface IRootState {
-  currentTodo: string;
-  allTodos: ITodo[];
-}
+// NOTE: Cannot connect a component that is imported???
 
 interface IStateProps {
   currentTodo: string;
@@ -26,7 +17,18 @@ interface IDispatchProps {
   add_todo: (todo: string) => IHandleTodo;
 }
 
-type Props = IStateProps & IDispatchProps;
+type InputProps = IStateProps & IDispatchProps;
+
+interface ITodo {
+  id: number;
+  item: string;
+  completed: boolean;
+}
+
+interface IRootState {
+  currentTodo: string;
+  allTodos: ITodo[];
+}
 
 const mapState = (state: IRootState) => {
   return {
@@ -45,27 +47,25 @@ const mapDispatch = {
   })
 };
 
-const Input = ({ currentTodo, handle_todo, add_todo }: Props) => (
-  <div className="todo-input-container">
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        // console.log("currentTodo", currentTodo);
-        add_todo(currentTodo);
-      }}
-    >
-      <input
-        className="todo-input"
-        type="text"
-        placeholder="What needs to be done?"
-        value={currentTodo}
-        onChange={e => handle_todo(e.target.value)}
-      />
-    </form>
-  </div>
-);
+const Input = ({ currentTodo, handle_todo, add_todo }: InputProps) => {
+  return (
+    <div className="todo-input-container">
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          add_todo(currentTodo);
+        }}
+      >
+        <input
+          className="todo-input"
+          type="text"
+          placeholder="What needs to be done?"
+          value={currentTodo}
+          onChange={e => handle_todo(e.target.value)}
+        />
+      </form>
+    </div>
+  );
+};
 
-export default connect<IStateProps, IDispatchProps>(
-  mapState,
-  mapDispatch
-)(Input);
+export default connect(mapState, mapDispatch)(Input);
