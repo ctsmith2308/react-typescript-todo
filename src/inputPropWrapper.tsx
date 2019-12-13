@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 
+import { handle_todo, add_todo } from "./actionCreators";
+
 import Input from "./input";
 
 // This is redundant
@@ -23,14 +25,8 @@ const mapState = (state: IRootState) => {
 };
 
 const mapDispatch = {
-  handle_todo: (input: string) => ({
-    type: "HANDLE_TODO",
-    payload: input
-  }),
-  add_todo: (todo: string) => ({
-    type: "ADD_TODO",
-    payload: todo
-  })
+  handle_todo,
+  add_todo
 };
 
 const connector = connect(mapState, mapDispatch);

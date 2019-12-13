@@ -1,6 +1,6 @@
-interface IHandleTodo {
+interface HandleInputAction {
   type: string;
-  payload: any;
+  payload: string;
 }
 
 interface ITodo {
@@ -9,52 +9,50 @@ interface ITodo {
   complete: boolean;
 }
 
-// type ActionTypes = IHandleTodo;
-
-interface RootState {
+export interface IRootState {
   currentTodo: string;
-  all: [];
+  all: ITodo[];
   counter: number;
 }
 
-const initialState: RootState = {
+const initialState: IRootState = {
   currentTodo: "",
   all: [],
   counter: 0
 };
 
-const inputReducer = (state = initialState, action: IHandleTodo) => {
+const inputReducer = (state = initialState, action: HandleInputAction) => {
   switch (action.type) {
     case "HANDLE_TODO":
       return {
         ...state,
         currentTodo: action.payload
       };
-    case "ADD_TODO":
-      return {
-        ...state,
-        currentTodo: "",
-        all: [
-          ...state.all,
-          { id: state.counter++, item: action.payload, complete: false }
-        ]
-      };
-    case "COMPLETE_TODO":
-      return {
-        ...state,
-        all: state.all.map((item: ITodo) =>
-          item.id === action.payload ? { ...item, complete: true } : { ...item }
-        )
-      };
-    case "RE_ADD_TODO":
-      return {
-        ...state,
-        all: state.all.map((item: ITodo) =>
-          item.id === action.payload
-            ? { ...item, complete: false }
-            : { ...item }
-        )
-      };
+    // case "ADD_TODO":
+    // return {
+    //   ...state,
+    //   currentTodo: "",
+    //   all: [
+    //     ...state.all,
+    //     { id: state.counter++, item: action.payload, complete: false }
+    //   ]
+    // };
+    // case "COMPLETE_TODO":
+    //   return {
+    //     ...state,
+    //     all: state.all.map((item: ITodo) =>
+    //       item.id === action.payload ? { ...item, complete: true } : { ...item }
+    //     )
+    //   };
+    // case "RE_ADD_TODO":
+    //   return {
+    //     ...state,
+    //     all: state.all.map((item: ITodo) =>
+    //       item.id === action.payload
+    //         ? { ...item, complete: false }
+    //         : { ...item }
+    //     )
+    //   };
     default:
       return state;
   }
