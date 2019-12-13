@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import logger from "redux-logger";
 
 import Input from "./inputPropWrapper";
 import TodoListContainer from "./listContainer";
 import rootReducer from "./rootReducer";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 const App: React.FC = () => {
   return (

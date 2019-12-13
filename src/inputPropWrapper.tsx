@@ -16,6 +16,14 @@ interface IRootState {
   // can add show completed and reuse this interface in reducer
 }
 
+// const mapStateWrapper = (stateSelector: string) => (state: IRootState) => {
+//   return {
+//     [stateSelector]: state[stateSelector]
+//   };
+// };
+
+// const mapState = mapStateWrapper("currentTodo");
+
 const mapState = (state: IRootState) => {
   return {
     currentTodo: state.currentTodo

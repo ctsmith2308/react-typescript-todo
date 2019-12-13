@@ -10,7 +10,7 @@ interface IStateProps {
 }
 
 interface IDispatchProps {
-  handle_todo: (input: string) => IHandleTodo;
+  handle_todo: (input: string) => IHandleTodo; // Can make these generic functions
   add_todo: (todo: string) => IHandleTodo;
 }
 

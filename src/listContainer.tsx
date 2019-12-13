@@ -18,7 +18,8 @@ interface ICompleteTodo {
 }
 
 interface IDispatchProps {
-  complete_todo: (id: number) => ICompleteTodo;
+  complete_todo: (id: number) => ICompleteTodo; // make this generic function
+  re_add_todo: (id: number) => ICompleteTodo; // should be a different type - more generic maybe?
 }
 
 type ListProps = IStateProps & IDispatchProps;
@@ -33,19 +34,28 @@ const mapState = (state: IRootState) => {
   };
 };
 
+// extract this anonymous to other function and re-use
 const mapDispatch = {
   complete_todo: (id: number) => ({
     type: "COMPLETE_TODO",
     payload: id
+  }),
+  re_add_todo: (id: number) => ({
+    type: "RE_ADD_TODO",
+    payload: id
   })
 };
 
-const mapTodos = (all: ITodo[]) => {
-  return all.map(todo => <li key={todo.id}>{todo.item}</li>);
+const mapTodos = ({ all, complete_todo, re_add_todo }: ListProps) => {
+  return all.map(todo => (
+    <li key={todo.id}>
+      <button onClick={e => complete_todo(todo.id)}>{todo.item}</button>
+    </li>
+  ));
 };
 
-const TodoListContainer = ({ all, complete_todo }: ListProps) => {
-  return <ul className="todo-list-container">{mapTodos(all)}</ul>;
+const TodoListContainer = (props: ListProps) => {
+  return <ul className="todo-list-container">{mapTodos(props)}</ul>;
 };
 
 const connector = connect(mapState, mapDispatch);

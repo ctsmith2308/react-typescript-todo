@@ -3,6 +3,12 @@ interface IHandleTodo {
   payload: any;
 }
 
+interface ITodo {
+  id: number;
+  item: string;
+  complete: boolean;
+}
+
 // type ActionTypes = IHandleTodo;
 
 interface RootState {
@@ -18,8 +24,6 @@ const initialState: RootState = {
 };
 
 const inputReducer = (state = initialState, action: IHandleTodo) => {
-  console.log("action", action);
-  console.log("state", state);
   switch (action.type) {
     case "HANDLE_TODO":
       return {
@@ -34,6 +38,13 @@ const inputReducer = (state = initialState, action: IHandleTodo) => {
           ...state.all,
           { id: state.counter++, item: action.payload, complete: false }
         ]
+      };
+    case "COMPLETE_TODO":
+      return {
+        ...state,
+        all: state.all.map((item: ITodo) =>
+          item.id === action.payload ? { ...item, complete: true } : { ...item }
+        )
       };
     default:
       return state;
