@@ -1,6 +1,6 @@
 interface HandleInputAction {
   type: string;
-  payload: string;
+  userInput: string;
 }
 
 export interface ITodo {
@@ -10,13 +10,13 @@ export interface ITodo {
 }
 
 export interface IRootState {
-  currentTodo: string;
+  userInput: string;
   all: ITodo[];
   counter: number;
 }
 
 const initialState: IRootState = {
-  currentTodo: "",
+  userInput: "",
   all: [],
   counter: 0
 };
@@ -26,17 +26,17 @@ const inputReducer = (state = initialState, action: HandleInputAction) => {
     case "HANDLE_TODO":
       return {
         ...state,
-        currentTodo: action.payload
+        userInput: action.userInput
       };
-    // case "ADD_TODO":
-    // return {
-    //   ...state,
-    //   currentTodo: "",
-    //   all: [
-    //     ...state.all,
-    //     { id: state.counter++, item: action.payload, complete: false }
-    //   ]
-    // };
+    case "ADD_TODO":
+      return {
+        ...state,
+        userInput: "",
+        all: [
+          ...state.all,
+          { id: state.counter++, item: action.userInput, complete: false }
+        ]
+      };
     // case "COMPLETE_TODO":
     //   return {
     //     ...state,

@@ -5,9 +5,9 @@ import { IRootState } from "./rootReducer";
 
 import Input from "./input";
 
-const mapState = (state: IRootState) => {
+const mapState = ({ userInput }: IRootState) => {
   return {
-    currentTodo: state.currentTodo
+    userInput: userInput
   };
 };
 

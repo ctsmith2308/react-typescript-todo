@@ -1,9 +1,9 @@
-export const handle_todo = (input: string) => ({
+export const handle_todo = (userInput: string) => ({
   type: "HANDLE_TODO",
-  payload: input
+  userInput
 });
 
-export const add_todo = (todo: string) => ({
+export const add_todo = (userInput: string) => ({
   type: "ADD_TODO",
-  payload: todo
+  userInput
 });
