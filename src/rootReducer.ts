@@ -46,6 +46,15 @@ const inputReducer = (state = initialState, action: IHandleTodo) => {
           item.id === action.payload ? { ...item, complete: true } : { ...item }
         )
       };
+    case "RE_ADD_TODO":
+      return {
+        ...state,
+        all: state.all.map((item: ITodo) =>
+          item.id === action.payload
+            ? { ...item, complete: false }
+            : { ...item }
+        )
+      };
     default:
       return state;
   }

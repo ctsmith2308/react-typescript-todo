@@ -46,16 +46,42 @@ const mapDispatch = {
   })
 };
 
-const mapTodos = ({ all, complete_todo, re_add_todo }: ListProps) => {
-  return all.map(todo => (
-    <li key={todo.id}>
-      <button onClick={e => complete_todo(todo.id)}>{todo.item}</button>
+type TodoProps = ITodo & IDispatchProps;
+
+const Todo = ({
+  id,
+  complete,
+  item,
+  re_add_todo,
+  complete_todo
+}: TodoProps) => {
+  return (
+    <li key={id}>
+      <button onClick={() => (complete ? re_add_todo(id) : complete_todo(id))}>
+        {item} is complete = {String(complete)}
+      </button>
     </li>
-  ));
+  );
 };
 
-const TodoListContainer = (props: ListProps) => {
-  return <ul className="todo-list-container">{mapTodos(props)}</ul>;
+const TodoListContainer = ({ all, complete_todo, re_add_todo }: ListProps) => {
+  return (
+    <ul className="todo-list-container">
+      {all.map((todo: ITodo) => {
+        const { id, item, complete } = todo;
+        return (
+          <Todo
+            key={id}
+            id={id}
+            item={item}
+            complete={complete}
+            complete_todo={complete_todo}
+            re_add_todo={re_add_todo}
+          />
+        );
+      })}
+    </ul>
+  );
 };
 
 const connector = connect(mapState, mapDispatch);
