@@ -3,7 +3,7 @@ interface HandleInputAction {
   payload: string;
 }
 
-interface ITodo {
+export interface ITodo {
   id: number;
   item: string;
   complete: boolean;
