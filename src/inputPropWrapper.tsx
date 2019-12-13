@@ -50,7 +50,7 @@ const Input = ({ currentTodo, handle_todo, add_todo }: Props) => (
     <form
       onSubmit={e => {
         e.preventDefault();
-        console.log("currentTodo", currentTodo);
+        // console.log("currentTodo", currentTodo);
         add_todo(currentTodo);
       }}
     >
