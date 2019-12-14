@@ -5,16 +5,17 @@ import {
   Todo,
   TodoState,
   TodoListStateProps,
-  ToggleTodoDispatchProps
+  ToggleTodoDispatchProps,
+  Views
 } from "./types";
 
 import TodoList from "./todoList";
 
 const _toggleView = (todos: Todo[], view: string) => {
   switch (view) {
-    case "active":
+    case Views.ACTIVE:
       return todos.filter(item => !item.complete);
-    case "complete":
+    case Views.COMPLETE:
       return todos.filter(item => item.complete);
     default:
       return todos;

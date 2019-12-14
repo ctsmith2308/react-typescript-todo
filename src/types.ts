@@ -51,3 +51,18 @@ export type ViewAction = {
 export type ViewMapDispatch = {
   toggleView: (view: string) => ViewAction;
 };
+
+// Enums
+export enum Views {
+  ALL = "ALL",
+  ACTIVE = "ACTIVE",
+  COMPLETE = "COMPLETE"
+}
+
+export enum ReducerActions {
+  INPUT_CHANGED = "INPUT_CHANGED",
+  ADD_TODO = "ADD_TODO",
+  TOGGLE_TODO_STATUS = "TOGGLE_TODO_STATUS",
+  DELETE_TODO = "DELETE_TODO",
+  TOGGLE_VIEW = "TOGGLE_VIEW"
+}

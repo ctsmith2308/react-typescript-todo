@@ -3,7 +3,8 @@ import {
   TodoState,
   UserInputAction,
   TodoAction,
-  ViewAction
+  ViewAction,
+  ReducerActions
 } from "./types";
 
 export const initialState: TodoState = {
@@ -20,12 +21,12 @@ const rootReducer = (
   action: TodoActionTypes
 ): TodoState => {
   switch (action.type) {
-    case "INPUT_CHANGED":
+    case ReducerActions.INPUT_CHANGED:
       return {
         ...state,
         userInput: action.userInput
       };
-    case "ADD_TODO":
+    case ReducerActions.ADD_TODO:
       return {
         ...state,
         userInput: "",
@@ -34,7 +35,7 @@ const rootReducer = (
           { id: state.counter++, item: action.userInput, complete: false }
         ]
       };
-    case "TOGGLE_TODO_STATUS":
+    case ReducerActions.TOGGLE_TODO_STATUS:
       return {
         ...state,
         todos: state.todos.map((item: Todo) =>
@@ -43,12 +44,12 @@ const rootReducer = (
             : { ...item }
         )
       };
-    case "DELETE_TODO":
+    case ReducerActions.DELETE_TODO:
       return {
         ...state,
         todos: state.todos.filter((item: Todo) => item.id !== action.id)
       };
-    case "TOGGLE_VIEW":
+    case ReducerActions.TOGGLE_VIEW:
       return {
         ...state,
         view: action.view

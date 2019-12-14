@@ -1,7 +1,7 @@
 import React from "react";
-import { ViewMapDispatch } from "./types";
+import { ViewMapDispatch, Views } from "./types";
 
-const views = ["all", "active", "complete"];
+const views = [Views.ALL, Views.ACTIVE, Views.COMPLETE];
 
 type ViewProps = ViewMapDispatch;
 
