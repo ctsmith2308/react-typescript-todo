@@ -10,21 +10,21 @@ import {
 
 import TodoList from "./todoList";
 
-const _toggleView = (all: Todo[], view: string) => {
+const _toggleView = (todos: Todo[], view: string) => {
   switch (view) {
     case "active":
-      return all.filter(item => !item.complete);
+      return todos.filter(item => !item.complete);
     case "complete":
-      return all.filter(item => item.complete);
+      return todos.filter(item => item.complete);
     default:
-      return all;
+      return todos;
   }
 };
 
-const mapState = ({ all, view }: TodoState): TodoListStateProps => {
-  let todos = _toggleView(all, view);
+const mapState = ({ todos, view }: TodoState): TodoListStateProps => {
+  todos = _toggleView(todos, view);
   return {
-    all: todos,
+    todos,
     view
   };
 };

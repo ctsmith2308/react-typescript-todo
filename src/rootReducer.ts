@@ -8,7 +8,7 @@ import {
 
 export const initialState: TodoState = {
   userInput: "",
-  all: [],
+  todos: [],
   counter: 0,
   view: ""
 };
@@ -19,7 +19,6 @@ const rootReducer = (
   state = initialState,
   action: TodoActionTypes
 ): TodoState => {
-  console.log("here is the action", action);
   switch (action.type) {
     case "INPUT_CHANGED":
       return {
@@ -30,15 +29,15 @@ const rootReducer = (
       return {
         ...state,
         userInput: "",
-        all: [
-          ...state.all,
+        todos: [
+          ...state.todos,
           { id: state.counter++, item: action.userInput, complete: false }
         ]
       };
     case "TOGGLE_TODO_STATUS":
       return {
         ...state,
-        all: state.all.map((item: Todo) =>
+        todos: state.todos.map((item: Todo) =>
           item.id === action.id
             ? { ...item, complete: !item.complete }
             : { ...item }
@@ -47,10 +46,9 @@ const rootReducer = (
     case "DELETE_TODO":
       return {
         ...state,
-        all: state.all.filter((item: Todo) => item.id !== action.id)
+        todos: state.todos.filter((item: Todo) => item.id !== action.id)
       };
     case "TOGGLE_VIEW":
-      console.log("view in switch", action.view);
       return {
         ...state,
         view: action.view

@@ -23,10 +23,10 @@ const SingleTodo = ({
 
 type TodoListProps = TodoListStateProps & ToggleTodoDispatchProps;
 
-const TodoList = ({ all, toggleTodoStatus, deleteTodo }: TodoListProps) => {
+const TodoList = ({ todos, toggleTodoStatus, deleteTodo }: TodoListProps) => {
   return (
     <ul className="todo-list-container">
-      {all.map((todo: Todo) => {
+      {todos.map((todo: Todo) => {
         const { id, item, complete } = todo;
         return (
           <SingleTodo

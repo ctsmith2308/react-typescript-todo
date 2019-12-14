@@ -7,7 +7,7 @@ export type Todo = {
 
 export type TodoState = {
   userInput: string;
-  all: Todo[];
+  todos: Todo[];
   counter: number;
   view: string;
 };
@@ -28,8 +28,8 @@ export type InputDispatchProps = {
 
 // Toggle Types and ActionTypes
 export type TodoListStateProps = {
-  all: Todo[];
-  view: string
+  todos: Todo[];
+  view: string;
 };
 
 export type TodoAction = {
