@@ -1,29 +1,13 @@
-export interface HandleUserInput {
+import { ITodoRootState, initialState } from "./rootReducer";
+
+export interface IHandleUserInput {
   type: string;
   userInput: string;
 }
 
-export interface ITodo {
-  id: number;
-  item: string;
-  complete: boolean;
-}
+type TodoInputActionType = IHandleUserInput;
 
-export interface IInputRootState {
-  userInput: string;
-  all: ITodo[];
-  counter: number;
-}
-
-const initialState: IInputRootState = {
-  userInput: "",
-  all: [],
-  counter: 0
-};
-
-type UserInputActionType = HandleUserInput;
-
-const inputReducer = (state = initialState, action: UserInputActionType) => {
+const inputReducer = (state = initialState, action: TodoInputActionType) => {
   switch (action.type) {
     case "INPUT_CHANGED":
       return {
@@ -39,22 +23,6 @@ const inputReducer = (state = initialState, action: UserInputActionType) => {
           { id: state.counter++, item: action.userInput, complete: false }
         ]
       };
-    // case "COMPLETE_TODO":
-    //   return {
-    //     ...state,
-    //     all: state.all.map((item: ITodo) =>
-    //       item.id === action.payload ? { ...item, complete: true } : { ...item }
-    //     )
-    //   };
-    // case "RE_ADD_TODO":
-    //   return {
-    //     ...state,
-    //     all: state.all.map((item: ITodo) =>
-    //       item.id === action.payload
-    //         ? { ...item, complete: false }
-    //         : { ...item }
-    //     )
-    //   };
     default:
       return state;
   }

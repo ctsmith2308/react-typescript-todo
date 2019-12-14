@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 
-import { IInputRootState } from "./inputReducer";
+import { ITodoRootState } from "./rootReducer";
 import { handle_inputted_todo } from "./actionCreators";
 import Input from "./input";
 
-const mapState = ({ userInput }: IInputRootState) => {
+const mapState = ({ userInput }: ITodoRootState) => {
   return {
     userInput: userInput
   };

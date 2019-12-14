@@ -4,9 +4,9 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 
-import Input from "./inputPropWrapper";
-import TodoListContainer from "./listContainer";
-import rootReducer from "./inputReducer";
+import Input from "./inputContainer";
+import TodoListContainer from "./todoListContainer";
+import rootReducer from "./rootReducer";
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 

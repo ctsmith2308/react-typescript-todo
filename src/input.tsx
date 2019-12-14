@@ -1,12 +1,12 @@
 import React from "react";
-import { HandleUserInput } from "./inputReducer";
+import { IHandleUserInput } from "./inputReducer";
 
 interface IStateProps {
   userInput: string;
 }
 
 interface IInputHandler {
-  (userInput: string, submitTodo?: boolean): HandleUserInput;
+  (userInput: string, submitTodo?: boolean): IHandleUserInput;
 }
 
 interface IDispatchProps {
@@ -21,7 +21,8 @@ const Input = ({ userInput, handle_inputted_todo }: InputProps) => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          handle_inputted_todo(userInput, true);
+          const addTodo = true;
+          handle_inputted_todo(userInput, addTodo);
         }}
       >
         <input
