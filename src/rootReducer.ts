@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 import {
   Todo,
   TodoState,
@@ -16,8 +18,8 @@ export const initialState: TodoState = {
 
 type TodoActionTypes = UserInputAction & TodoAction & ViewAction;
 
-const rootReducer = (
-  state = initialState,
+const inputReducer = (
+  state: TodoState = initialState,
   action: TodoActionTypes
 ): TodoState => {
   switch (action.type) {
@@ -58,5 +60,9 @@ const rootReducer = (
       return state;
   }
 };
+
+const rootReducer = combineReducers({ inputReducer });
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

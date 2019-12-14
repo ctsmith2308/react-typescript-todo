@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { toggleTodoStatus, deleteTodo } from "./actionCreators";
 import {
   Todo,
-  TodoState,
+  // TodoState,
   TodoListStateProps,
   ToggleTodoDispatchProps,
   Views
 } from "./types";
+
+import { AppState } from "./rootReducer";
 
 import TodoList from "./todoList";
 
@@ -22,7 +24,8 @@ const _toggleView = (todos: Todo[], view: string) => {
   }
 };
 
-const mapState = ({ todos, view }: TodoState): TodoListStateProps => {
+const mapState = (state: AppState): TodoListStateProps => {
+  let { todos, view } = state.inputReducer;
   todos = _toggleView(todos, view);
   return {
     todos,
