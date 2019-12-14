@@ -1,4 +1,9 @@
-export const handle_inputted_todo = (userInput: string, addTodo = false) => ({
+import { UserInputAction } from "./types";
+
+export const handleInputTodo = (
+  userInput: string,
+  addTodo?: boolean
+): UserInputAction => ({
   type: addTodo ? "ADD_TODO" : "INPUT_CHANGED",
   userInput
 });

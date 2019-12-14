@@ -1,22 +1,19 @@
 import React from "react";
 import "./App.css";
-import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import logger from "redux-logger";
 
 import Input from "./inputContainer";
-import TodoListContainer from "./todoListContainer";
-import rootReducer from "./rootReducer";
-
-const store = createStore(rootReducer, applyMiddleware(logger));
+import store from "./store";
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Input />
-      <TodoListContainer />
     </Provider>
   );
 };
 
 export default App;
+
+// INTERESTING LINK TO FOLLOW!!!
+//https://joshuaavalon.io/create-type-safe-react-redux-store-with-typescript
