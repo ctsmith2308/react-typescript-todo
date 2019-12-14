@@ -1,3 +1,4 @@
+// State Types
 export type Todo = {
   id: number;
   item: string;
@@ -25,11 +26,15 @@ export type InputDispatchProps = {
 };
 
 // Toggle Types and ActionTypes
-// export type CompleteTodoAction = {
-//   type: string;
-//   id: number;
-// };
+export type TodoListStateProps = {
+  all: Todo[];
+};
 
-// export type ToggleTodoDispatchProps = {
-//   handleInputTodo: (id: number) => CompleteTodoAction;
-// };
+export type CompleteTodoAction = {
+  type: string;
+  id: number;
+};
+
+export type ToggleTodoDispatchProps = {
+  toggleCompletedStatus: (id: number) => CompleteTodoAction;
+};

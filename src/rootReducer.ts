@@ -1,4 +1,4 @@
-import { TodoState, UserInputAction } from "./types";
+import { Todo, TodoState, UserInputAction, CompleteTodoAction } from "./types";
 
 export const initialState: TodoState = {
   userInput: "",
@@ -6,7 +6,7 @@ export const initialState: TodoState = {
   counter: 0
 };
 
-type TodoActionTypes = UserInputAction;
+type TodoActionTypes = UserInputAction & CompleteTodoAction;
 
 const rootReducer = (
   state = initialState,
@@ -27,15 +27,15 @@ const rootReducer = (
           { id: state.counter++, item: action.userInput, complete: false }
         ]
       };
-    // case "TOGGLE_TODO_STATUS":
-    //   return {
-    //     ...state,
-    //     all: state.all.map((item: Todo) =>
-    //       item.id === action.id
-    //         ? { ...item, complete: !item.complete }
-    //         : { ...item }
-    //     )
-    //   };
+    case "TOGGLE_TODO_STATUS":
+      return {
+        ...state,
+        all: state.all.map((item: Todo) =>
+          item.id === action.id
+            ? { ...item, complete: !item.complete }
+            : { ...item }
+        )
+      };
     default:
       return state;
   }

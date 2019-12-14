@@ -1,18 +1,22 @@
 import { connect } from "react-redux";
 
-// import TodoList from "./todo";
+import { toggleCompletedStatus } from "./actionCreators";
+import {
+  TodoState,
+  TodoListStateProps,
+  ToggleTodoDispatchProps
+} from "./types";
 
-import { toggle_completed_status } from "./actionCreators";
-import { TodoState } from "./types";
+import TodoList from "./todoList";
 
-const mapState = ({ all }: TodoState) => {
+const mapState = ({ all }: TodoState): TodoListStateProps => {
   return {
     all
   };
 };
 
-const mapDispatch = {
-  toggleCompletedStatus: toggle_completed_status
+const mapDispatch: ToggleTodoDispatchProps = {
+  toggleCompletedStatus
 };
-export default mapState;
-// export default connect(mapState, mapDispatch)(TodoList);
+
+export default connect(mapState, mapDispatch)(TodoList);

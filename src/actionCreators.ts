@@ -1,4 +1,4 @@
-import { UserInputAction } from "./types";
+import { UserInputAction, CompleteTodoAction } from "./types";
 
 export const handleInputTodo = (
   userInput: string,
@@ -8,7 +8,7 @@ export const handleInputTodo = (
   userInput
 });
 
-export const toggle_completed_status = (id: number) => ({
+export const toggleCompletedStatus = (id: number): CompleteTodoAction => ({
   type: "TOGGLE_TODO_STATUS",
   id
 });
