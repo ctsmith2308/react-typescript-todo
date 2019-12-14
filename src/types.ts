@@ -9,6 +9,7 @@ export type TodoState = {
   userInput: string;
   all: Todo[];
   counter: number;
+  view: string;
 };
 
 //Input Types and ActionTypes
@@ -22,19 +23,31 @@ export type UserInputAction = {
 };
 
 export type InputDispatchProps = {
-  handleInputTodo: (userInput: string, addTodo?: boolean) => UserInputAction;
+  handleInput: (userInput: string, addTodo?: boolean) => UserInputAction;
 };
 
 // Toggle Types and ActionTypes
 export type TodoListStateProps = {
   all: Todo[];
+  view: string
 };
 
-export type CompleteTodoAction = {
+export type TodoAction = {
   type: string;
   id: number;
 };
 
 export type ToggleTodoDispatchProps = {
-  toggleCompletedStatus: (id: number) => CompleteTodoAction;
+  toggleTodoStatus: (id: number) => TodoAction;
+  deleteTodo: (id: number) => TodoAction;
+};
+
+// Toggle View Types and Actions
+export type ViewAction = {
+  type: string;
+  view: string;
+};
+
+export type ViewMapDispatch = {
+  toggleView: (view: string) => ViewAction;
 };

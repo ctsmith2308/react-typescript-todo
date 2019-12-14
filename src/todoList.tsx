@@ -8,20 +8,22 @@ const SingleTodo = ({
   id,
   complete,
   item,
-  toggleCompletedStatus
+  toggleTodoStatus,
+  deleteTodo
 }: TodoProps) => {
   return (
     <li key={id}>
-      <button onClick={() => toggleCompletedStatus(id)}>
+      <button onClick={() => toggleTodoStatus(id)}>
         {item} is complete = {String(complete)}
       </button>
+      <button onClick={() => deleteTodo(id)}>Delete</button>
     </li>
   );
 };
 
 type TodoListProps = TodoListStateProps & ToggleTodoDispatchProps;
 
-const TodoList = ({ all, toggleCompletedStatus }: TodoListProps) => {
+const TodoList = ({ all, toggleTodoStatus, deleteTodo }: TodoListProps) => {
   return (
     <ul className="todo-list-container">
       {all.map((todo: Todo) => {
@@ -32,9 +34,8 @@ const TodoList = ({ all, toggleCompletedStatus }: TodoListProps) => {
             id={id}
             item={item}
             complete={complete}
-            toggleCompletedStatus={toggleCompletedStatus}
-            // deleteTodo
-            // editTodo
+            toggleTodoStatus={toggleTodoStatus}
+            deleteTodo={deleteTodo}
           />
         );
       })}

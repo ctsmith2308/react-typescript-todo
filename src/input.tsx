@@ -3,14 +3,14 @@ import { InputStateProps, InputDispatchProps } from "./types";
 
 type InputProps = InputStateProps & InputDispatchProps;
 
-const Input = ({ userInput, handleInputTodo }: InputProps) => {
+const Input = ({ userInput, handleInput }: InputProps) => {
   return (
     <div className="todo-input-container">
       <form
         onSubmit={e => {
           e.preventDefault();
           const addTodo = true;
-          handleInputTodo(userInput, addTodo);
+          handleInput(userInput, addTodo);
         }}
       >
         <input
@@ -18,7 +18,7 @@ const Input = ({ userInput, handleInputTodo }: InputProps) => {
           type="text"
           placeholder="What needs to be done?"
           value={userInput}
-          onChange={e => handleInputTodo(e.target.value)}
+          onChange={e => handleInput(e.target.value)}
         />
       </form>
     </div>

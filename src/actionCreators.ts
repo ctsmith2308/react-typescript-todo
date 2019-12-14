@@ -1,6 +1,6 @@
-import { UserInputAction, CompleteTodoAction } from "./types";
+import { UserInputAction, TodoAction, ViewAction } from "./types";
 
-export const handleInputTodo = (
+export const handleInput = (
   userInput: string,
   addTodo?: boolean
 ): UserInputAction => ({
@@ -8,7 +8,17 @@ export const handleInputTodo = (
   userInput
 });
 
-export const toggleCompletedStatus = (id: number): CompleteTodoAction => ({
+export const toggleTodoStatus = (id: number): TodoAction => ({
   type: "TOGGLE_TODO_STATUS",
   id
+});
+
+export const deleteTodo = (id: number): TodoAction => ({
+  type: "DELETE_TODO",
+  id
+});
+
+export const toggleView = (view: string): ViewAction => ({
+  type: "TOGGLE_VIEW",
+  view
 });

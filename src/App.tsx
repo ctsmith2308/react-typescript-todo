@@ -5,12 +5,14 @@ import store from "./store";
 
 import Input from "./inputContainer";
 import TodoList from "./todoListContainer";
+import ViewButtons from "./viewButtonContainer";
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Input />
       <TodoList />
+      <ViewButtons />
     </Provider>
   );
 };

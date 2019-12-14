@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { TodoState, InputStateProps, InputDispatchProps } from "./types";
-import { handleInputTodo } from "./actionCreators";
+import { handleInput } from "./actionCreators";
 
 import Input from "./input";
 
@@ -12,7 +12,7 @@ const mapState = (state: TodoState): InputStateProps => {
 };
 
 const mapDispatch: InputDispatchProps = {
-  handleInputTodo
+  handleInput
 };
 
 const connector = connect(mapState, mapDispatch);

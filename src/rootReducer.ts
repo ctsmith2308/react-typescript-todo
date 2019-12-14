@@ -1,17 +1,25 @@
-import { Todo, TodoState, UserInputAction, CompleteTodoAction } from "./types";
+import {
+  Todo,
+  TodoState,
+  UserInputAction,
+  TodoAction,
+  ViewAction
+} from "./types";
 
 export const initialState: TodoState = {
   userInput: "",
   all: [],
-  counter: 0
+  counter: 0,
+  view: ""
 };
 
-type TodoActionTypes = UserInputAction & CompleteTodoAction;
+type TodoActionTypes = UserInputAction & TodoAction & ViewAction;
 
 const rootReducer = (
   state = initialState,
   action: TodoActionTypes
 ): TodoState => {
+  console.log("here is the action", action);
   switch (action.type) {
     case "INPUT_CHANGED":
       return {
@@ -35,6 +43,17 @@ const rootReducer = (
             ? { ...item, complete: !item.complete }
             : { ...item }
         )
+      };
+    case "DELETE_TODO":
+      return {
+        ...state,
+        all: state.all.filter((item: Todo) => item.id !== action.id)
+      };
+    case "TOGGLE_VIEW":
+      console.log("view in switch", action.view);
+      return {
+        ...state,
+        view: action.view
       };
     default:
       return state;
