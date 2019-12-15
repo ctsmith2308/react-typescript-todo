@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { TodoState, InputStateProps, InputDispatchProps } from "./types";
+import { InputStateProps, InputDispatchProps } from "./types";
 import { handleInput } from "./actionCreators";
 
 import Input from "./input";
