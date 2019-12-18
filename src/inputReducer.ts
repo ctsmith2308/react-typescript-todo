@@ -44,6 +44,15 @@ const inputReducer = (
             : { ...item }
         )
       };
+    case ReducerActions.UPDATE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((item: Todo) =>
+          item.id === action.id
+            ? { ...item, item: action.userInput }
+            : { ...item }
+        )
+      };
     case ReducerActions.DELETE_TODO:
       return {
         ...state,

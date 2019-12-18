@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
 
-import { toggleTodoStatus, deleteTodo } from "./actionCreators";
+import { toggleTodoStatus, deleteTodo, updateTodo } from "./actionCreators";
 import {
   Todo,
-  // TodoState,
   TodoListStateProps,
   ToggleTodoDispatchProps,
   Views
@@ -35,7 +34,8 @@ const mapState = (state: AppState): TodoListStateProps => {
 
 const mapDispatch: ToggleTodoDispatchProps = {
   toggleTodoStatus,
-  deleteTodo
+  deleteTodo,
+  updateTodo
 };
 
 export default connect(mapState, mapDispatch)(TodoList);

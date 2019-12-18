@@ -18,6 +18,21 @@ export const toggleTodoStatus = (id: number): TodoAction => ({
   id
 });
 
+// export const updateTodo = (userInput: string, id: number): UserInputAction => ({
+//   type: ReducerActions.UPDATE_TODO,
+//   userInput,
+//   id
+// });
+
+export const updateTodo = (userInput: string, id: number): UserInputAction => {
+  console.log("BOOM", userInput, id);
+  return {
+    type: ReducerActions.UPDATE_TODO,
+    userInput,
+    id
+  };
+};
+
 export const deleteTodo = (id: number): TodoAction => ({
   type: ReducerActions.DELETE_TODO,
   id

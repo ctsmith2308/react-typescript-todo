@@ -20,6 +20,7 @@ export type InputStateProps = {
 export type UserInputAction = {
   type: string;
   userInput: string;
+  id?: number;
 };
 
 export type InputDispatchProps = {
@@ -40,6 +41,7 @@ export type TodoAction = {
 export type ToggleTodoDispatchProps = {
   toggleTodoStatus: (id: number) => TodoAction;
   deleteTodo: (id: number) => TodoAction;
+  updateTodo: (userInput: string, id: number) => UserInputAction;
 };
 
 // Toggle View Types and Actions
@@ -63,6 +65,7 @@ export enum ReducerActions {
   INPUT_CHANGED = "INPUT_CHANGED",
   ADD_TODO = "ADD_TODO",
   TOGGLE_TODO_STATUS = "TOGGLE_TODO_STATUS",
+  UPDATE_TODO = "UPDATE_TODO",
   DELETE_TODO = "DELETE_TODO",
   TOGGLE_VIEW = "TOGGLE_VIEW"
 }
